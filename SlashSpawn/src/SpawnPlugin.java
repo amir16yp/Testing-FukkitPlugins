@@ -1,7 +1,7 @@
 import com.fukkit.*;
 import com.fukkit.event.EventSystem;
 
-public class SpawnPlugin extends JavaPlugin {
+public class SpawnPlugin extends JavaPlugin implements EventSystem.Listener {
 
     private static final String CONFIG_X = "x";
     private static final String CONFIG_Y = "y";
@@ -16,6 +16,7 @@ public class SpawnPlugin extends JavaPlugin {
         config = this.getConfig();
         loadSpawnLocation();
         saveSpawnLocation();
+        getPluginManager().registerEvents(this, this);
 
         API api = API.getInstance();
         api.registerCommand("setspawn", this::handleSetSpawn, "spawn.set");
